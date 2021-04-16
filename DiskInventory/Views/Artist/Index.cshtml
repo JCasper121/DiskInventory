@@ -1,0 +1,30 @@
+﻿@model List<Artist>;
+@{
+    ViewData["Title"] = "Artist Page";
+}
+<div>
+    <h1>Artist</h1>
+    <table>
+        <thead>
+
+            <tr>
+                <td>ArtistId</td>
+                <td>Artist Name</td>
+                <td></td>
+                <td>Artist Type</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Artist a in Model)
+            { 
+                <tr>
+                    <td>@a.ArtistId</td>
+                    <td>@a.FirstName</td>
+                    <td>@a.LastName</td>
+                    <td>@a.ArtistType</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

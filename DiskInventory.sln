@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskInventory", "DiskInventory\DiskInventory.csproj", "{544CED06-A8FB-45BD-A1BF-9FAC5EE5EE3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{544CED06-A8FB-45BD-A1BF-9FAC5EE5EE3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{544CED06-A8FB-45BD-A1BF-9FAC5EE5EE3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{544CED06-A8FB-45BD-A1BF-9FAC5EE5EE3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{544CED06-A8FB-45BD-A1BF-9FAC5EE5EE3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {997B0DDC-B84E-47D6-8D42-264ABBF432DF}
+	EndGlobalSection
+EndGlobal

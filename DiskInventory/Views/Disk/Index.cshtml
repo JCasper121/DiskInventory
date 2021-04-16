@@ -1,0 +1,35 @@
+﻿@model List<Disk>;
+@{
+    ViewData["Title"] = "Disk Page";
+}
+
+
+<div>
+    <h1>@ViewData["Title"]</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>DiskID</td>
+                <td>Title</td>
+                <td>Genre</td>
+                <td>StatusId</td>
+                <td>DiskTypeId</td>
+
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (Disk d in Model)
+            {
+                <tr>
+                    <td>@d.DiskId</td>
+                    <td>@d.DiskName</td>
+                    <td>@d.GenreId</td>
+                    <td>@d.StatusId</td>
+                    <td>@d.DiskTypeId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
