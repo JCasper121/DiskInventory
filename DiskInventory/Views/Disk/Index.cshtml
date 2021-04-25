@@ -6,7 +6,8 @@
 
 <div>
     <h1>@ViewData["Title"]</h1>
-    <table>
+    <a asp-controller="Disk" asp-action="Add">Add a disk</a>
+    <table class="table">
         <thead>
             <tr>
                 <td>DiskID</td>
@@ -28,6 +29,8 @@
                     <td>@d.GenreId</td>
                     <td>@d.StatusId</td>
                     <td>@d.DiskTypeId</td>
+                    <td><a asp-controller="Disk" asp-action="Edit"asp-route-id="@d.DiskId">Edit</a></td>
+                    <td><a asp-controller="Disk" asp-action="Delete" asp-route-id="@d.DiskId">Delete</a></td>
                 </tr>
             }
         </tbody>

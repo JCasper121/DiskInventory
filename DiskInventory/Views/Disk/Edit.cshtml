@@ -1,0 +1,60 @@
+﻿@model Disk
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h2>@ViewBag.Action</h2>
+
+<form asp-action="Edit" asp-controller="Disk" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="DiskName">Disk name:</label>
+        <input asp-for="DiskName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ReleaseDate">Release date:</label>
+        <input asp-for="ReleaseDate" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GenreId">Genre:</label>
+        <select asp-for="GenreId" class="form-control">
+            <option>Select a genre type</option>
+            @foreach (Genre g in ViewBag.Genres)
+            {
+                <option value="@g.GenreId">@g.Description</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StatusId">Status:</label>
+        <select asp-for="StatusId" class="form-control">
+            <option>Select a Status</option>
+            @foreach (Status s in ViewBag.Statuses)
+            {
+                <option value="@s.StatusId">@s.Description</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DiskTypeId">Disk Type:</label>
+        <select asp-for="DiskTypeId" class="form-control">
+            <option>Select a Disk Type</option>
+            @foreach (DiskType dt in ViewBag.DiskTypes)
+            {
+                <option value="@dt.DiskTypeId">@dt.Description</option>
+            }
+        </select>
+    </div>
+
+    <input type="hidden" asp-for="DiskId" />
+
+
+    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <a asp-controller="Disk" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>

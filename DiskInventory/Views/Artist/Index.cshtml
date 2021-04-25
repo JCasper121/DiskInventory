@@ -4,7 +4,8 @@
 }
 <div>
     <h1>Artist</h1>
-    <table>
+    <a asp-controller="Artist" asp-action="Add">Add Artist</a>
+    <table class="table">
         <thead>
 
             <tr>
@@ -23,6 +24,8 @@
                     <td>@a.FirstName</td>
                     <td>@a.LastName</td>
                     <td>@a.ArtistType</td>
+                    <td><a asp-controller="Artist" asp-action="Edit" asp-route-id="@a.ArtistId">Edit</a></td>
+                    <td><a asp-controller="Artist" asp-action="Delete" asp-route-id="@a.ArtistId">Delete</a></td>
                 </tr>
             }
         </tbody>

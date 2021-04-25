@@ -4,7 +4,8 @@
 }
 <div>
     <h1>Borrower Information</h1>
-    <table>
+    <a asp-controller="Borrower" asp-action="Add">Add a Borrower</a>
+    <table class="table">
         <thead>
             <tr>
                 <td>BorrowerId</td>
@@ -24,6 +25,8 @@
                 <td>@b.FirstName</td>
                 <td>@b.LastName</td>
                 <td>@b.Phone</td>
+                <td><a asp-controller="Borrower" asp-action="Edit" asp-route-id="@b.BorrowerId">Edit</a></td>
+                <td><a asp-controller="Borrower" asp-action="Delete" asp-route-id="@b.BorrowerId">Delete</a></td>
             </tr>
         }
         </tbody>
