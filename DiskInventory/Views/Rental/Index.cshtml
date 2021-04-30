@@ -1,0 +1,38 @@
+﻿@model List<DiskRental>;
+@{
+    ViewData["Title"] = "Checkout / Check in page";
+}
+
+
+<div>
+    <h1>@ViewData["Title"]</h1>
+    <a asp-controller="Rental" asp-action="Add">Checkout a disk</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Disk Title</th>
+                <th>Borrower Name</th>
+                <th>Borrowed date</th>
+                <th>Due date</th>
+                <th>Returned Date</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (DiskRental r in Model)
+            {
+                <tr>
+                    <td>@r.Disk.DiskName</td>
+                    <td>@r.Borrower.FirstName @r.Borrower.LastName</td>
+                    <td>@r.BorrowedDate.ToShortDateString()</td>
+                    <td>@r.DueDate.ToShortDateString()</td>
+                    <td>@(r.ReturnDate == null ? "" : Convert.ToDateTime(r.ReturnDate).ToShortDateString())</td>
+                    <td><a asp-controller="Rental" asp-action="Edit" asp-route-id="@r.RentalId">Edit</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
