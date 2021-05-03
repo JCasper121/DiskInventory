@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DiskInventory.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DiskInventory.Controllers
 {
@@ -28,6 +29,7 @@ namespace DiskInventory.Controllers
         {
             ViewBag.Action = "Add";
             ViewBag.ArtistTypes = context.ArtistTypes.OrderBy(t => t.Description).ToList();
+            
             return View("Edit", new Artist());
         }
 
@@ -47,10 +49,16 @@ namespace DiskInventory.Controllers
             {
                 if (artist.ArtistId == 0)
                 {
-                    context.Artists.Add(artist);
-                }else
+                    //context.Artists.Add(artist);
+                    context.Database.ExecuteSqlRaw("execute sp_ins_artist @p0, @p1, @p2",
+                        parameters: new[] { artist.FirstName, artist.LastName, artist.ArtistTypeId.ToString() });
+                }
+                else
                 {
-                    context.Artists.Update(artist);
+                    //context.Artists.Update(artist);
+                    context.Database.ExecuteSqlRaw("execute sp_upd_artist @p0, @p1, @p2, @p3",
+                        parameters: new[] { artist.ArtistId.ToString(), artist.FirstName, artist.LastName, artist.ArtistTypeId.ToString() });
+
                 }
                 context.SaveChanges();
                 return RedirectToAction("Index");
@@ -72,7 +80,9 @@ namespace DiskInventory.Controllers
         [HttpPost] 
         public RedirectToActionResult Delete(Artist artist)
         {
-            context.Artists.Remove(artist);
+            //context.Artists.Remove(artist);
+            context.Database.ExecuteSqlRaw("execute sp_del_artist @p0",
+                parameters: new[] { artist.ArtistId.ToString() });
             context.SaveChanges();
             return RedirectToAction("Index");
         }

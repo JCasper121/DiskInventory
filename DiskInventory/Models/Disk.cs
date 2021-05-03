@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+
 #nullable disable
 
 namespace DiskInventory.Models
@@ -12,6 +13,7 @@ namespace DiskInventory.Models
         {
             DiskArtists = new HashSet<DiskArtist>();
             DiskRentals = new HashSet<DiskRental>();
+
         }
 
         public int DiskId { get; set; }
@@ -20,6 +22,8 @@ namespace DiskInventory.Models
         public string DiskName { get; set; }
 
         [Required(ErrorMessage = "Release date required")]
+        [DataType(DataType.Date)]
+        [ReleaseDateRange]
         public DateTime ReleaseDate { get; set; }
         public int? StatusId { get; set; }
 
@@ -32,5 +36,8 @@ namespace DiskInventory.Models
         public virtual Status Status { get; set; }
         public virtual ICollection<DiskArtist> DiskArtists { get; set; }
         public virtual ICollection<DiskRental> DiskRentals { get; set; }
+
+
+
     }
 }

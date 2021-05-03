@@ -23,7 +23,7 @@
                     <td>@a.ArtistId</td>
                     <td>@a.FirstName</td>
                     <td>@a.LastName</td>
-                    <td>@a.ArtistType</td>
+                    <td>@(a.ArtistTypeId == 1? "Solo" : "Group")</td>
                     <td><a asp-controller="Artist" asp-action="Edit" asp-route-id="@a.ArtistId">Edit</a></td>
                     <td><a asp-controller="Artist" asp-action="Delete" asp-route-id="@a.ArtistId">Delete</a></td>
                 </tr>

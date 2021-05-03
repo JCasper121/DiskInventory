@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DiskInventory.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DiskInventory.Controllers
 {
@@ -50,12 +51,15 @@ namespace DiskInventory.Controllers
             {
                 if(disk.DiskId == 0)
                 {
-                    ViewBag.Action = "Add";
-                    context.Disks.Add(disk);
+                    //context.Disks.Add(disk);
+                    context.Database.ExecuteSqlRaw("execute sp_ins_disk @p0, @p1, @p2, @p3, @p4",
+                        parameters: new[] { disk.DiskName, disk.ReleaseDate.ToString(), disk.StatusId.ToString(), disk.GenreId.ToString(), disk.DiskTypeId.ToString() });
                 }
                 else
                 {
-                    context.Disks.Update(disk);
+                    context.Database.ExecuteSqlRaw("execute sp_upd_disk @p0, @p1, @p2, @p3, @p4, @p5",
+                        parameters: new[] { disk.DiskId.ToString(), disk.DiskName, disk.ReleaseDate.ToString(), disk.StatusId.ToString(), disk.GenreId.ToString(), disk.DiskTypeId.ToString() });
+                    //context.Disks.Update(disk);
                 }
                 context.SaveChanges();
                 return RedirectToAction("Index");
@@ -80,7 +84,9 @@ namespace DiskInventory.Controllers
         [HttpPost]
         public RedirectToActionResult Delete(Disk disk)
         {
-            context.Disks.Remove(disk);
+            //context.Disks.Remove(disk);
+            context.Database.ExecuteSqlRaw("execute sp_del_disk @p0",
+                parameters: new[] { disk.DiskId.ToString() });
             context.SaveChanges();
             return RedirectToAction("Index");
         }
