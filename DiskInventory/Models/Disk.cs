@@ -29,6 +29,8 @@ namespace DiskInventory.Models
 
         [Required(ErrorMessage = "Genre is required")]
         public int? GenreId { get; set; }
+
+        [Required(ErrorMessage = "Disk type is required")]
         public int? DiskTypeId { get; set; }
 
         public virtual DiskType DiskType { get; set; }
