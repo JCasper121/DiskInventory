@@ -36,7 +36,14 @@ namespace DiskInventory.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            ViewBag.Action = "Edit";
+            if(id == 0)
+            {
+                ViewBag.Action = "Add";
+            }else
+            {
+                ViewBag.Action = "Edit";
+
+            }
             ViewBag.Disks = context.Disks.OrderBy(d => d.DiskName).ToList();
             ViewBag.Borrowers = context.Borrowers.OrderBy(b => b.LastName).ToList();
             var rental = context.DiskRentals.Find(id);
@@ -44,15 +51,30 @@ namespace DiskInventory.Controllers
         }
 
         [HttpPost]
-        public RedirectToActionResult Edit(DiskRental rental)
+        public IActionResult Edit(DiskRental rental)
         {
-            if(rental.RentalId == 0)
+            if(ModelState.IsValid)
             {
-                context.DiskRentals.Add(rental);
-            } else
-            {
-                context.DiskRentals.Update(rental);
+                if(rental.RentalId == 0)
+                {
+                    context.DiskRentals.Add(rental);
+                } else
+                {
+                    context.DiskRentals.Update(rental);
 
+                }
+            }else
+            {
+                if(rental.RentalId == 0)
+                {
+                    ViewBag.Action = "Add";
+                } else
+                {
+                    ViewBag.Action = "Edit";
+                }
+                ViewBag.Disks = context.Disks.OrderBy(d => d.DiskName).ToList();
+                ViewBag.Borrowers = context.Borrowers.OrderBy(b => b.LastName).ToList();
+                return View(rental);
             }
             context.SaveChanges();
             return RedirectToAction("Index", "Rental");

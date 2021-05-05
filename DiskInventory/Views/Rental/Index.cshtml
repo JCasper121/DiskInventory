@@ -27,8 +27,8 @@
                 <tr>
                     <td>@r.Disk.DiskName</td>
                     <td>@r.Borrower.FirstName @r.Borrower.LastName</td>
-                    <td>@r.BorrowedDate.ToShortDateString()</td>
-                    <td>@r.DueDate.ToShortDateString()</td>
+                    <td>@(Convert.ToDateTime(r.BorrowedDate).ToShortDateString())</td>
+                    <td>@(Convert.ToDateTime(r.DueDate).ToShortDateString())</td>
                     <td>@(r.ReturnDate == null ? "" : Convert.ToDateTime(r.ReturnDate).ToShortDateString())</td>
                     <td><a asp-controller="Rental" asp-action="Edit" asp-route-id="@r.RentalId">Edit</a></td>
                 </tr>

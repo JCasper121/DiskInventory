@@ -20,7 +20,7 @@ namespace DiskInventory.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var artists = context.Artists.OrderBy(a => a.LastName).ThenBy(a => a.FirstName).ToList();
+            var artists = context.Artists.OrderBy(a => a.FirstName).ThenBy(a => a.LastName).ToList();
             return View(artists);
         }
 

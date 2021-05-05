@@ -11,16 +11,19 @@ namespace DiskInventory.Models
         {
             DiskRentals = new HashSet<DiskRental>();
         }
-
         public int BorrowerId { get; set; }
+
         [Required(ErrorMessage = "First name is required")]
+        //[StringLength(60, MinimumLength =3)]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Last name is required")]
+        //[StringLength(60, MinimumLength = 3)]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Phone number is required")]
-        public long Phone { get; set; }
+        //[StringLength(10, 12)]
+        public string Phone { get; set; }
 
         public virtual ICollection<DiskRental> DiskRentals { get; set; }
     }

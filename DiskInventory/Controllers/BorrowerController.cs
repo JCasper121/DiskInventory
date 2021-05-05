@@ -25,11 +25,12 @@ namespace DiskInventory.Controllers
         [HttpGet]
         public IActionResult Add()
         {
+
             ViewBag.Action = "Add";
             return View("Edit", new Borrower());
         }
 
-        [HttpGet]
+        //[HttpGet]
         public IActionResult Edit(int id)
         {
             ViewBag.Action = "Edit";
@@ -38,7 +39,7 @@ namespace DiskInventory.Controllers
         }
 
         [HttpPost]
-        public RedirectToActionResult Edit(Borrower borrower)
+        public IActionResult Edit(Borrower borrower)
         {
             if(ModelState.IsValid)
             {
@@ -59,8 +60,8 @@ namespace DiskInventory.Controllers
                 return RedirectToAction("Index");
             } else
             {
-                ViewBag.Action = (borrower.BorrowerId == 0 ? "Add" : "Edit");
-                return RedirectToAction("Edit", borrower);
+                ViewBag.Action = (borrower.BorrowerId == 0) ? "Add" : "Edit";
+                return View(borrower);
             }
         }
 
